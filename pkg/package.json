@@ -1,0 +1,21 @@
+{
+  "name": "picross_solver",
+  "type": "module",
+  "description": "A solver library for Picross (Nonogram) puzzles, compiled to WebAssembly.",
+  "version": "0.1.0",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Nagatani/NonogramSolver"
+  },
+  "files": [
+    "picross_solver_bg.wasm",
+    "picross_solver.js",
+    "picross_solver.d.ts"
+  ],
+  "main": "picross_solver.js",
+  "types": "picross_solver.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}
