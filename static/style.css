@@ -276,6 +276,54 @@ button:disabled {
   color: #6b7280;
 }
 
+.ocr-input-group label {
+  font-weight: 600;
+  color: #374151;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.ocr-input-group input[type="file"] {
+  font-size: 0.9rem;
+}
+
+#ocr-status {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  background-color: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 0.5rem;
+  text-align: center;
+  color: #1d4ed8;
+}
+
+#ocr-status.hidden {
+  display: none;
+}
+
+#ocr-status p {
+  margin: 0 0 0.5rem 0;
+  font-weight: 500;
+}
+
+#ocr-progress {
+  width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 8px;
+}
+
+#ocr-progress::-webkit-progress-bar {
+  background-color: #dbeafe;
+  border-radius: 4px;
+}
+
+#ocr-progress::-webkit-progress-value {
+  background-color: #3b82f6;
+  border-radius: 4px;
+  transition: width 0.2s;
+}
+
 /* --- Message & Responsive --- */
 #message-area {
   text-align: center;
