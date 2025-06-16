@@ -1,0 +1,58 @@
+# ワークフローの名前
+name: Deploy to GitHub Pages
+
+# ワークフローが実行されるタイミングを定義
+on:
+  # mainブランチにプッシュされた時
+  push:
+    branches: [ main ]
+  # GitHubのActionsタブから手動で実行できるようにする
+  workflow_dispatch:
+
+# ジョブ（一連の処理）を定義
+jobs:
+  # ビルドとデプロイを行うジョブ
+  build-and-deploy:
+    # 最新のUbuntu環境で実行
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    # ジョブ内のステップを定義
+    steps:
+      # 1. リポジトリのコードをチェックアウトする
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # 2. Rustの安定版ツールチェインをセットアップする
+      - name: Setup Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+
+      # 3. wasm-packをインストールする
+      - name: Install wasm-pack
+        run: cargo install wasm-pack
+
+      # 4. RustコードをWASMにビルドする（出力先は static/pkg）
+      #    このステップで、Webページに必要な全ファイルが `static` ディレクトリに揃う
+      - name: Build WASM
+        run: wasm-pack build --target web --out-dir static/pkg
+
+      # Create .nojekyll file
+      - name: Create .nojekyll file
+        run: touch static/.nojekyll
+
+      # remove gitignore file in pkg
+      - name: remove gitignore file
+        run: rm static/pkg/.gitignore
+
+
+      # 5. `static` ディレクトリの内容を `gh-pages` ブランチにデプロイする
+      #    peaceiris/actions-gh-pages という便利なアクションを利用する
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          # デプロイに必要なトークン。GitHubが自動で提供してくれる
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # デプロイするファイルが含まれているディレクトリを指定
+          publish_dir: ./static
