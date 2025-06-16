@@ -3,7 +3,6 @@
   "type": "module",
   "description": "A solver library for Picross (Nonogram) puzzles, compiled to WebAssembly.",
   "version": "0.1.0",
-  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/Nagatani/NonogramSolver"
