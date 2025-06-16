@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ノノグラムソルバー</title>
   <link rel="stylesheet" href="style.css">
+
+  <script src='https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js'></script>
   <script type="module" src="modules.js"></script>
 </head>
 
@@ -20,28 +22,41 @@
     <div class="controls-area">
       <div class="size-controls">
         <label for="rows-input">サイズ:</label>
-        <input type="number" id="rows-input" value="5" min="1" max="100">
+        <input type="number" id="rows-input" value="10" min="1" max="100">
         <span>x</span>
-        <input type="number" id="cols-input" value="5" min="1" max="100">
+        <input type="number" id="cols-input" value="10" min="1" max="100">
       </div>
       <div class="action-buttons">
         <button id="solve-button" class="solve-button">確定マスを探す</button>
         <button id="reset-button" class="reset-button">リセット</button>
       </div>
     </div>
-
     <details>
-      <summary>ルール一括入力</summary>
-      <div id="bulk-input-area" class="bulk-input-area">
-        <div class="bulk-input-group">
-          <label for="row-rules-textarea">行のルール（各行を改行で区切る）</label>
-          <textarea id="row-rules-textarea" placeholder="例:&#10;1 1&#10;3&#10;1 1 1"></textarea>
+      <summary>ルールを一括入力／画像読込</summary>
+      <div class="details-content">
+        <div id="bulk-input-area" class="bulk-input-area">
+          <div class="bulk-input-group">
+            <label for="row-rules-textarea">行のルール</label>
+            <textarea id="row-rules-textarea" placeholder="例:&#10;1 1&#10;3&#10;1 1 1"></textarea>
+            <div class="ocr-input-group">
+              <label for="row-ocr-input">画像から読込</label>
+              <input type="file" id="row-ocr-input" accept="image/*">
+            </div>
+          </div>
+          <div class="bulk-input-group">
+            <label for="col-rules-textarea">列のルール</label>
+            <textarea id="col-rules-textarea" placeholder="例:&#10;2&#10;1 1&#10;2"></textarea>
+            <div class="ocr-input-group">
+              <label for="col-ocr-input">画像から読込</label>
+              <input type="file" id="col-ocr-input" accept="image/*">
+            </div>
+          </div>
+          <button id="reflect-bulk-rules-button" class="bulk-apply-button">テキストエリアの内容を個別入力欄に反映</button>
         </div>
-        <div class="bulk-input-group">
-          <label for="col-rules-textarea">列のルール（各列を改行で区切る）</label>
-          <textarea id="col-rules-textarea" placeholder="例:&#10;2&#10;1 1&#10;2"></textarea>
+        <div id="ocr-status" class="hidden">
+          <p id="ocr-status-text"></p>
+          <progress id="ocr-progress" value="0" max="1"></progress>
         </div>
-        <button id="reflect-bulk-rules-button" class="bulk-apply-button">個別入力欄にルールを反映</button>
       </div>
     </details>
     <div class="picross-wrapper">
