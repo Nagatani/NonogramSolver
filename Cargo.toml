@@ -4,7 +4,6 @@ version = "0.1.0"
 edition = "2024"
 description = "A solver library for Picross (Nonogram) puzzles, compiled to WebAssembly."
 repository = "https://github.com/Nagatani/NonogramSolver"
-license = "MIT"
 
 [lib]
 crate-type = ["cdylib"]
