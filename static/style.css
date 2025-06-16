@@ -1,0 +1,319 @@
+/* --- General Styles --- */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f3f4f6;
+  margin: 0;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+}
+
+.container {
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  padding: 1.5rem;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+h1 {
+  font-size: 1.875rem;
+  font-weight: bold;
+  color: #1f2937;
+  margin: 0 0 0.5rem 0;
+}
+
+header p {
+  color: #4b5563;
+  margin: 0;
+}
+
+/* --- Controls Area --- */
+.controls-area {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  background-color: #f9fafb;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.size-controls,
+.action-buttons {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.action-buttons {
+  justify-content: flex-end;
+}
+
+.controls-area label {
+  font-weight: 500;
+  color: #374151;
+}
+
+.controls-area input[type="number"] {
+  width: 4rem;
+  padding: 0.5rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+}
+
+/* --- 新規: details/summary タグのスタイル --- */
+details {
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  margin-bottom: 1.5rem;
+  background-color: #f9fafb;
+}
+
+summary {
+  font-weight: 600;
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  outline: none;
+  color: #374151;
+}
+
+summary:hover {
+  background-color: #f3f4f6;
+}
+
+.bulk-input-area {
+  padding: 0 1rem 1rem 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.bulk-input-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #374151;
+}
+
+.bulk-input-group textarea {
+  width: 100%;
+  height: 150px;
+  padding: 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  font-family: Consolas, 'Courier New', monospace;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  resize: vertical;
+}
+
+.bulk-apply-button {
+  background-color: #10b981;
+  grid-column: 1 / -1;
+  justify-self: center;
+  width: 60%;
+  max-width: 400px;
+}
+
+.bulk-apply-button:hover:not(:disabled) {
+  background-color: #059669;
+}
+
+/* --- ボタン共通スタイル --- */
+button {
+  padding: 0.6rem 1.2rem;
+  font-weight: 600;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+button:hover:not(:disabled) {
+  transform: scale(1.02);
+}
+
+button:disabled {
+  background-color: #9ca3af;
+  cursor: wait;
+  transform: none;
+}
+
+.solve-button {
+  background-color: #4f46e5;
+}
+
+.solve-button:hover:not(:disabled) {
+  background-color: #4338ca;
+}
+
+.reset-button {
+  background-color: #ef4444;
+}
+
+.reset-button:hover:not(:disabled) {
+  background-color: #dc2626;
+}
+
+/* --- Picross Grid Area --- */
+.picross-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.picross-container {
+  display: inline-grid;
+  grid-template-areas: "corner col-rules" "row-rules grid";
+  grid-template-columns: auto 1fr;
+  grid-template-rows: min-content 1fr;
+  gap: 4px;
+  padding: 1rem;
+  background-color: #e5e7eb;
+  border-radius: 0.5rem;
+}
+
+#col-rules-container,
+#row-rules-container {
+  display: grid;
+  gap: 1px;
+}
+
+#col-rules-container {
+  grid-area: col-rules;
+  padding-bottom: 2px;
+  border-bottom: 2px solid #4b5563;
+}
+
+#row-rules-container {
+  grid-area: row-rules;
+  padding-right: 2px;
+  border-right: 2px solid #4b5563;
+}
+
+.rule-input-wrapper {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.rule-input {
+  width: 100%;
+  height: 100%;
+  min-height: 32px;
+  min-width: 32px;
+  border: none;
+  background-color: #f9fafb;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+#col-rules-container .rule-input {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  line-height: 32px;
+  padding-bottom: 0.5rem;
+  max-height: 200px;
+  text-align: right;
+}
+
+#row-rules-container .rule-input {
+  text-align: right;
+  padding-right: 0.5rem;
+}
+
+#grid-container {
+  grid-area: grid;
+  display: grid;
+  gap: 1px;
+  background-color: #9ca3af;
+  border: 2px solid #1f2937;
+}
+
+.cell {
+  padding: 0;
+  width: 100%;
+  height: 0;
+  padding-bottom: 100%;
+  position: relative;
+  background-color: white;
+  transition: background-color 0.2s;
+  border: none;
+  border-radius: 0;
+}
+
+.cell:hover {
+  background-color: #e5e7eb;
+}
+
+.cell.filled {
+  background-color: #1f2937;
+}
+
+.cell.crossed .cross-icon {
+  display: block;
+}
+
+.cross-icon {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: #6b7280;
+}
+
+/* --- Message & Responsive --- */
+#message-area {
+  text-align: center;
+  margin-top: 1.5rem;
+  padding: 0.75rem;
+  border-radius: 0.375rem;
+  border: 1px solid;
+  display: none;
+}
+
+#message-area.info {
+  background-color: #eff6ff;
+  color: #1d4ed8;
+  border-color: #bfdbfe;
+}
+
+#message-area.error {
+  background-color: #fef2f2;
+  color: #b91c1c;
+  border-color: #fecaca;
+}
+
+@media (max-width: 768px) {
+
+  .controls-area,
+  .bulk-input-area {
+    grid-template-columns: 1fr;
+  }
+
+  .action-buttons {
+    justify-content: center;
+  }
+
+  .container {
+    padding: 1rem;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+}
